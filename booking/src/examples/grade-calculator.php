@@ -72,7 +72,7 @@ if (isset($_GET['grade1'], $_GET['grade2'], $_GET['grade3'] )){
       $grade1 = (float) $_GET['grade1'];
       $grade2 = (float) $_GET['grade2'];
       $grade3 = (float) $_GET['grade3'];
-      $average = (float) $_GET['grade1'] + (float) $_GET['grade2'] + (float) $_GET['grade3'] / 3;
+      $average = ($grade1 + $grade2 + $grade3) / 3;
 }
 
     
