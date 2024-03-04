@@ -96,7 +96,7 @@ if (isset($_GET['grade1'], $_GET['grade2'], $_GET['grade3'] )){
 <br>
 
 
-
+<?if(isset($average)):?>
    
 <table>
 
