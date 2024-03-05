@@ -4,6 +4,7 @@
         width: 100px;
         height: 100px;
         border-radius: 100%;
+        border: 1px solid black;
         margin: 5px;
     }
     a:first-of-type{
@@ -23,32 +24,26 @@
 
 
 <?
+ 
 if(isset($_GET['color'])){
     $color = ($_GET['color']);
     switch($color){
-        case 0;
-        case "red": 
-         echo '<a href="/examples/traffic-light.php?color=red" style="background-color: red;"></a>';
-         echo'<a href="/examples/traffic-light.php?color=yellow"></a>';
-         echo '<a href="/examples/traffic-light.php?color=green"></a>';
+        case "red":  $color1 ='red';
        break;
         
-       case "yellow": 
-        echo '<a href="/examples/traffic-light.php?color=red"></a>';
-        echo'<a href="/examples/traffic-light.php?color=yellow" style="background-color: yellow;"></a>';
-        echo '<a href="/examples/traffic-light.php?color=green"></a>';
-      break;
+       case "yellow": $color2 = 'yellow';
+      break; 
 
-      case "green": 
-        echo '<a href="/examples/traffic-light.php?color=red"></a>';
-        echo'<a href="/examples/traffic-light.php?color=yellow"></a>';
-        echo '<a href="/examples/traffic-light.php?color=green" style="background-color: green;"></a>';
+      case "green": $color3 = 'green';
       break;
+       
 
     }
+
 }
+
 ?>
 
-<a href="/examples/traffic-light.php?color=red"></a>
-<a href="/examples/traffic-light.php?color=yellow"></a>
-<a href="/examples/traffic-light.php?color=green"></a>
+<a href="/examples/traffic-light.php?color=red" style="background-color:<?=$color1?>"></a>
+<a href="/examples/traffic-light.php?color=yellow" style="background-color:<?=$color2?>"></a>
+<a href="/examples/traffic-light.php?color=green" style="background-color:<?=$color3?>"></a>
