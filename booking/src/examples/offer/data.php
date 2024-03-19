@@ -24,7 +24,7 @@ $products = [
         'category' => 'Category A',
         'new' => NEW_STICKER,
         'price' => [
-                     'amount' => 300,
+                     'amount' => 700,
                      'currency' => 'USD',
                 ]
     ],
@@ -48,7 +48,7 @@ $products = [
         'category' => 'Category B',
         'new' => NEW_STICKER,
         'price' => [
-                     'amount' => 500,
+                     'amount' => 900,
                      'currency' => 'USD',
                         ]
     ],
@@ -82,7 +82,7 @@ $products = [
         'category' => 'Category B',
         'new' => false,
         'price' => [
-                     'amount' => 400,
+                     'amount' => 500,
                      'currency' => 'USD',
             ]
     ],
@@ -106,17 +106,12 @@ $products = [
         'category' => 'Category C',
         'new' => false,
         'price' => [
-                     'amount' => 600,
+                     'amount' => 800,
                      'currency' => 'USD',
                     ]
     ],
 
-]
-
-
-?>
-
-<? 
+]; 
 
 if(isset($_GET['p'])){
     $page = $_GET['p'];
@@ -136,23 +131,22 @@ if(
 if($page <=3 ){
     $next_page = $page + 1;
 }
-?>
 
-<?
 
 if(isset($_GET['s'])){
     $sort = $_GET['s'];
 }else{
-    $sort = '';
+    $sort ='ascendent';
 }
 
-if($sort === 'ascendent'){
-usort($products, function($p1, $p2){
-    return $p1['price']['amount'] - $p2['price']['amount'];}
-);
-
-}
-else usort($products, function($p1, $p2){
-    return $p2['price']['amount'] - $p1['price']['amount'];});
-
-?>
+  
+  if($sort === 'ascendent'){
+  usort($products, function($p1, $p2){
+      return $p1['price']['amount'] - $p2['price']['amount'];}
+  );
+  
+  }else{
+  usort($products, function($p1, $p2){
+      return $p2['price']['amount'] - $p1['price']['amount'];}
+  );
+  }
