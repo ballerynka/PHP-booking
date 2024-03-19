@@ -62,12 +62,10 @@ ol{
     }
     h2{
 height: 60px;
-
     }
     img{
         vertical-align: top;
     }
-
     a{
         text-decoration: 0;
         color:white;
@@ -78,21 +76,17 @@ height: 60px;
     }
     .page-number{
         text-decoration: underline;
-        text-decoration-color:  #cc0066;
+        text-decoration-color:  #b30059;
         color: white;
-
     }
     .arrows{
         margin: 50px auto;
- 
     }
     span{
     display: inline-block;
     padding: 30px 20px;
     font-size: 25px;
     color: #b3b3b3;
-   
-
     }
 .page{
     font-size: 28px;
@@ -109,30 +103,34 @@ height: 60px;
 }
 .sort{
     margin-bottom: 30px;
+    font-size: 28px;
+}
+.sort a{
+    font-size: 20px;
+}
+.sort a span{
+    color: #b30059;
 }
 
 </style>
 
 
 <ol>
+
 <div class="page">
 You are on page <?= $page?>
 </div>
-<div class="sort">Sort by price
-<a class="sort-arrow" href="?s=ascendent">&#8657</a>
-<a class="sort-arrow" href="?s=descendent">&#8659</a>
+
+<div class="sort">Sort by price : 
+    <a class="sort-arrow" href="?s=ascendent"><span>&#8657</span> Low to high</a>
+    <a class="sort-arrow" href="?s=descendent"><span>&#8659</span> High to low</a>
 </div>
 
+ <?
+$start = ($page - 1) * 3;
+$end = $page * 3;
 
-
-
-
-
-
-<?if($page ==1){
-  
-
-    for($i = 0; $i < 3; $i++){?>
+    for($i = $start; $i< count($products) && $i < $end ;$i++ ){?>
 
     <li>
     <h2><?=$products[$i]['name']?>
@@ -144,56 +142,22 @@ You are on page <?= $page?>
     <div  class="price"><?=$products[$i]['price']['amount']?><?=$products[$i]['price']['currency']?></div>
     </li>
     
+ <?}?>
 
- <?}}
-
-if($page == 2 ){
-  
-
-    for($i = 3 ; $i < 6; $i++){?>
-    
-        <li>
-        <h2><?=$products[$i]['name']?>
-        <?if($products[$i]['new']){?>
-            <img src="<?=NEW_STICKER?> " alt="" width='50'>
-       <?}?>
-
-    </h2>
-        <h3><?=$products[$i]['category']?></h3>
-        <img src="<?=$products[$i]['image']?>" width="100" alt="">
-        <div  class="price"><?=$products[$i]['price']['amount']?><?=$products[$i]['price']['currency']?></div>
-        </li>
-        
- <?}}
-
-     
-if($page ==3){
- 
-
-    for($i = 6 ; $i < 9; $i++){?>
-        
-            <li>
-            <h2><?=$products[$i]['name']?>
-        <?if($products[$i]['new']){?>
-            <img src="<?=NEW_STICKER?> " alt="" width='50'>
-       <?}?>
-            <h3><?=$products[$i]['category']?></h3>
-            <img src="<?=$products[$i]['image']?>" width="100" alt="">
-            <div class="price"><?=$products[$i]['price']['amount']?><?=$products[$i]['price']['currency']?></div>
-            </li>
-        
-<?}}
-     
-?>
-
-    <div class="arrows">
-        <a href="?p=<?= $prev_page?>" <? if($page == 1){?>class='hidden-arrows';<?}?>>&lt;</a>
-
-           <span <? if($page == 1){?>class="page-number";<?}?>>[ 1 ]</span>
+<div class="arrows">
+<?if($sort === 'ascendent'){?>
+    <a href="?p=<?= $prev_page?>&s=ascendent"<? if($page == 1){?>class='hidden-arrows';<?}?>>&lt;</a>
+    <span <? if($page == 1){?>class="page-number";<?}?>>[ 1 ]</span>
            <span <? if($page == 2){?>class="page-number";<?}?>>[ 2 ]</span>
            <span <? if($page == 3){?>class="page-number";<?}?>>[ 3 ]</span>
-           
-        <a href="?p=<?= $next_page?>" <? if($page ==3){?>class='hidden-arrows';<?}?>>&gt;</a>
+    <a href="?p=<?= $next_page?>&s=ascendent"<? if($page ==3){?>class='hidden-arrows';<?}?>>&gt;</a>
+<?}else {?>
+       <a href="?p=<?= $prev_page?>&s=descendent"<? if($page == 1){?>class='hidden-arrows';<?}?>>&lt;</a>
+       <span <? if($page == 1){?>class="page-number";<?}?>>[ 1 ]</span>
+           <span <? if($page == 2){?>class="page-number";<?}?>>[ 2 ]</span>
+           <span <? if($page == 3){?>class="page-number";<?}?>>[ 3 ]</span>
+       <a href="?p=<?= $next_page?>&s=descendent"<? if($page ==3){?>class='hidden-arrows';<?}?>>&gt;</a>
+<?}?>
     </div> 
  </ol>
 
